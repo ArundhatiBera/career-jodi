@@ -2,41 +2,73 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Career Jodi Design System - Funky & Playful */
+
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&display=swap');
 
 @layer base {
   :root {
+    /* Funky Color Palette */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 225 15% 20%;
+    
+    /* Vibrant Pastels */
+    --sky-blue: 206 89% 77%;
+    --sunshine-yellow: 49 100% 62%;
+    --bubblegum-pink: 315 100% 72%;
+    --mint-green: 120 100% 80%;
+    --lavender: 267 58% 70%;
+    
+    /* Semantic Colors */
+    --primary: 206 89% 77%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 206 89% 85%;
+    
+    --secondary: 49 100% 62%;
+    --secondary-foreground: 225 15% 20%;
+    
+    --accent: 315 100% 72%;
+    --accent-foreground: 0 0% 100%;
+    
+    --success: 120 100% 80%;
+    --success-foreground: 225 15% 20%;
+    
+    --fun: 267 58% 70%;
+    --fun-foreground: 0 0% 100%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 225 15% 20%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 225 15% 20%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
+    --muted: 210 40% 98%;
     --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 206 89% 77%;
 
-    --radius: 0.5rem;
+    --radius: 1rem;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--sky-blue)), hsl(var(--primary-glow)));
+    --gradient-fun: linear-gradient(135deg, hsl(var(--bubblegum-pink)), hsl(var(--lavender)));
+    --gradient-success: linear-gradient(135deg, hsl(var(--mint-green)), hsl(var(--success)));
+    --gradient-sunshine: linear-gradient(135deg, hsl(var(--sunshine-yellow)), hsl(49 100% 75%));
+    --gradient-rainbow: linear-gradient(90deg, hsl(var(--sky-blue)), hsl(var(--sunshine-yellow)), hsl(var(--bubblegum-pink)), hsl(var(--mint-green)), hsl(var(--lavender)));
+    
+    /* Shadows */
+    --shadow-fun: 0 10px 30px -5px hsl(var(--primary) / 0.3);
+    --shadow-bounce: 0 20px 40px -10px hsl(var(--accent) / 0.4);
+    --shadow-glow: 0 0 30px hsl(var(--primary-glow) / 0.5);
+    
+    /* Animations */
+    --bounce-duration: 0.6s;
+    --jiggle-duration: 0.8s;
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +132,171 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-baloo;
+  }
+}
+
+/* Funky Animations & Effects */
+@layer utilities {
+  .font-baloo {
+    font-family: 'Baloo 2', cursive;
+  }
+
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+
+  .gradient-fun {
+    background: var(--gradient-fun);
+  }
+
+  .gradient-success {
+    background: var(--gradient-success);
+  }
+
+  .gradient-sunshine {
+    background: var(--gradient-sunshine);
+  }
+
+  .gradient-rainbow {
+    background: var(--gradient-rainbow);
+  }
+
+  .shadow-fun {
+    box-shadow: var(--shadow-fun);
+  }
+
+  .shadow-bounce {
+    box-shadow: var(--shadow-bounce);
+  }
+
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Animation Classes */
+  .bounce-in {
+    animation: bounceIn var(--bounce-duration) cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .jiggle {
+    animation: jiggle var(--jiggle-duration) ease-in-out infinite;
+  }
+
+  .float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .wiggle {
+    animation: wiggle 1s ease-in-out;
+  }
+
+  .hover-bounce:hover {
+    animation: hoverBounce 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .hover-jiggle:hover {
+    animation: hoverJiggle 0.6s ease-in-out;
+  }
+}
+
+/* Keyframe Animations */
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.3) translateY(-50px);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05) translateY(-10px);
+    opacity: 0.8;
+  }
+  70% {
+    transform: scale(0.95) translateY(0px);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes jiggle {
+  0%, 20%, 50%, 80%, 100% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(-3deg);
+  }
+  30% {
+    transform: rotate(3deg);
+  }
+  60% {
+    transform: rotate(-2deg);
+  }
+  90% {
+    transform: rotate(2deg);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes wiggle {
+  0%, 7% {
+    transform: rotateZ(0);
+  }
+  15% {
+    transform: rotateZ(-15deg);
+  }
+  20% {
+    transform: rotateZ(10deg);
+  }
+  25% {
+    transform: rotateZ(-10deg);
+  }
+  30% {
+    transform: rotateZ(6deg);
+  }
+  35% {
+    transform: rotateZ(-4deg);
+  }
+  40%, 100% {
+    transform: rotateZ(0);
+  }
+}
+
+@keyframes hoverBounce {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes hoverJiggle {
+  0%, 50%, 100% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(-2deg);
+  }
+  20% {
+    transform: rotate(2deg);
+  }
+  30% {
+    transform: rotate(-1deg);
+  }
+  40% {
+    transform: rotate(1deg);
   }
 }

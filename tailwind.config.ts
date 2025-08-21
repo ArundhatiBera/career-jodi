@@ -18,15 +18,27 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				baloo: ['Baloo 2', 'cursive'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
+				
+				/* Funky Color Palette */
+				'sky-blue': 'hsl(var(--sky-blue))',
+				'sunshine-yellow': 'hsl(var(--sunshine-yellow))',
+				'bubblegum-pink': 'hsl(var(--bubblegum-pink))',
+				'mint-green': 'hsl(var(--mint-green))',
+				'lavender': 'hsl(var(--lavender))',
+				
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))'
+					foreground: 'hsl(var(--primary-foreground))',
+					glow: 'hsl(var(--primary-glow))'
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
@@ -43,6 +55,14 @@ export default {
 				accent: {
 					DEFAULT: 'hsl(var(--accent))',
 					foreground: 'hsl(var(--accent-foreground))'
+				},
+				success: {
+					DEFAULT: 'hsl(var(--success))',
+					foreground: 'hsl(var(--success-foreground))'
+				},
+				fun: {
+					DEFAULT: 'hsl(var(--fun))',
+					foreground: 'hsl(var(--fun-foreground))'
 				},
 				popover: {
 					DEFAULT: 'hsl(var(--popover))',
@@ -84,11 +104,57 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				bounceIn: {
+					'0%': {
+						transform: 'scale(0.3) translateY(-50px)',
+						opacity: '0'
+					},
+					'50%': {
+						transform: 'scale(1.05) translateY(-10px)',
+						opacity: '0.8'
+					},
+					'70%': {
+						transform: 'scale(0.95) translateY(0px)',
+						opacity: '1'
+					},
+					'100%': {
+						transform: 'scale(1) translateY(0px)',
+						opacity: '1'
+					}
+				},
+				jiggle: {
+					'0%, 20%, 50%, 80%, 100%': {
+						transform: 'rotate(0deg)'
+					},
+					'10%': {
+						transform: 'rotate(-3deg)'
+					},
+					'30%': {
+						transform: 'rotate(3deg)'
+					},
+					'60%': {
+						transform: 'rotate(-2deg)'
+					},
+					'90%': {
+						transform: 'rotate(2deg)'
+					}
+				},
+				float: {
+					'0%, 100%': {
+						transform: 'translateY(0px)'
+					},
+					'50%': {
+						transform: 'translateY(-10px)'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'bounce-in': 'bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+				'jiggle': 'jiggle 0.8s ease-in-out infinite',
+				'float': 'float 3s ease-in-out infinite'
 			}
 		}
 	},
