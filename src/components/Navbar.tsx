@@ -1,43 +1,20 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Heart, LogOut, User } from 'lucide-react';
+import { Menu, X, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useAuth } from '@/contexts/AuthContext';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
-  const { user, logout } = useAuth();
 
-  // Filter navigation based on user role
-  const getFilteredNavLinks = () => {
-    const baseLinks = [
-      { name: 'Home', path: '/' },
-      { name: 'About Us', path: '/about' },
-      { name: 'Contact', path: '/contact' }
-    ];
-
-    if (user?.role === 'student') {
-      return [
-        ...baseLinks.slice(0, 1), // Home
-        { name: 'Career Match', path: '/career-match' },
-        { name: 'Student Results', path: '/student-results' },
-        { name: 'Career Explorer', path: '/career-suggestions' },
-        ...baseLinks.slice(1) // About, Contact
-      ];
-    } else if (user?.role === 'parent') {
-      return [
-        ...baseLinks.slice(0, 1), // Home
-        { name: 'Parent Preferences', path: '/parent-preferences' },
-        { name: 'Student Results', path: '/student-results' },
-        ...baseLinks.slice(1) // About, Contact
-      ];
-    }
-
-    return baseLinks;
-  };
-
-  const navLinks = getFilteredNavLinks();
+  const navLinks = [
+    { name: 'Home', path: '/' },
+    { name: 'Career Match', path: '/career-match' },
+    { name: 'Parent Preferences', path: '/parent-preferences' },
+    { name: 'Student Results', path: '/student-results' },
+    { name: 'About Us', path: '/about' },
+    { name: 'Contact', path: '/contact' }
+  ];
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -70,23 +47,6 @@ const Navbar = () => {
                 {link.name}
               </Link>
             ))}
-            
-            {/* User Info & Logout */}
-            <div className="flex items-center space-x-2 ml-4 pl-4 border-l border-primary/20">
-              <div className="flex items-center space-x-2 px-3 py-2 bg-primary/10 rounded-full">
-                <User className="w-4 h-4 text-primary" />
-                <span className="text-sm font-semibold text-primary capitalize">
-                  {user?.role} - {user?.name}
-                </span>
-              </div>
-              <button
-                onClick={logout}
-                className="p-2 rounded-full hover:bg-destructive/10 text-destructive transition-colors hover-bounce"
-                title="Logout"
-              >
-                <LogOut className="w-5 h-5" />
-              </button>
-            </div>
           </div>
 
           {/* Mobile Menu Button */}
@@ -120,28 +80,6 @@ const Navbar = () => {
                   {link.name}
                 </Link>
               ))}
-              
-              {/* Mobile User Info & Logout */}
-              <div className="pt-4 mt-4 border-t border-primary/20">
-                <div className="px-4 py-2 mb-3">
-                  <div className="flex items-center space-x-2 text-sm">
-                    <User className="w-4 h-4 text-primary" />
-                    <span className="font-semibold text-primary capitalize">
-                      {user?.role} - {user?.name}
-                    </span>
-                  </div>
-                </div>
-                <button
-                  onClick={() => {
-                    logout();
-                    setIsMenuOpen(false);
-                  }}
-                  className="w-full px-4 py-3 rounded-lg font-medium text-destructive hover:bg-destructive/10 transition-all duration-300 flex items-center"
-                >
-                  <LogOut className="w-5 h-5 mr-2" />
-                  Logout
-                </button>
-              </div>
             </div>
           </div>
         )}

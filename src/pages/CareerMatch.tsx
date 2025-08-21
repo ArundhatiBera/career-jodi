@@ -3,7 +3,6 @@ import { FunkyButton } from '@/components/ui/funky-button';
 import { Link } from 'react-router-dom';
 import { ChevronRight, BookOpen, Palette, Calculator, Stethoscope, Music, Code } from 'lucide-react';
 import { useState } from 'react';
-import ProtectedRoute from '@/components/ProtectedRoute';
 
 const CareerMatch = () => {
   const [selectedSubjects, setSelectedSubjects] = useState<string[]>([]);
@@ -26,8 +25,7 @@ const CareerMatch = () => {
   };
 
   return (
-    <ProtectedRoute allowedRoles={['student']} fallbackMessage="This section is for students only! Parents should access their preferences section.">
-      <div className="min-h-screen bg-gradient-to-br from-sky-blue/10 via-white to-lavender/10">
+    <div className="min-h-screen bg-gradient-to-br from-sky-blue/10 via-white to-lavender/10">
       <Navbar />
       
       <main className="pt-20 pb-16">
@@ -110,7 +108,6 @@ const CareerMatch = () => {
         </div>
       </main>
     </div>
-    </ProtectedRoute>
   );
 };
 
