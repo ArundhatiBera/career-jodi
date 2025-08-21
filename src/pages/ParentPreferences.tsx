@@ -3,6 +3,7 @@ import { FunkyButton } from '@/components/ui/funky-button';
 import { Link } from 'react-router-dom';
 import { ChevronRight, TrendingUp, Heart, Shield, Lightbulb } from 'lucide-react';
 import { useState } from 'react';
+import ProtectedRoute from '@/components/ProtectedRoute';
 
 const ParentPreferences = () => {
   const [preferences, setPreferences] = useState<Record<string, string>>({});
@@ -37,7 +38,8 @@ const ParentPreferences = () => {
   const canProceed = Object.keys(preferences).length === questions.length;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-lavender/10 via-white to-sunshine-yellow/10">
+    <ProtectedRoute allowedRoles={['parent']} fallbackMessage="This section is for parents only! Students should access their career matching section.">
+      <div className="min-h-screen bg-gradient-to-br from-lavender/10 via-white to-sunshine-yellow/10">
       <Navbar />
       
       <main className="pt-20 pb-16">
@@ -127,6 +129,7 @@ const ParentPreferences = () => {
         </div>
       </main>
     </div>
+    </ProtectedRoute>
   );
 };
 
